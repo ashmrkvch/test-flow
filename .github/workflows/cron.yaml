@@ -1,7 +1,8 @@
 name: "example-cron-action"
 on:
   schedule:
-    - cron:  '56 15 * * *'
+    - cron:  '*/5 * * * *'
+  workflow_dispatch: 
    
 jobs:
   cache:
