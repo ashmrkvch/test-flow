@@ -2,7 +2,7 @@ name: "example-cron-action"
 on:
   schedule:
     - cron:  '* * * * *'
-  workflow_dispatch:   
+   
 jobs:
   cache:
     runs-on: ubuntu-latest
