@@ -1,0 +1,23 @@
+name: "example-cron-action"
+on:
+  schedule:
+    - cron:  '*/5 * * * *'
+  workflow_dispatch:   
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12.20.1'
+      - uses: actions/cache@v2.1.4
+        id: cache
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+        if: steps.cache.outputs.cache-hit != 'true'    
