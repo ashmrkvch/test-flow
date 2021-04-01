@@ -1,7 +1,7 @@
 name: "example-cron-action"
 on:
   schedule:
-    - cron:  '* * * * *'
+    - cron:  '*/2 * * * *'
    
 jobs:
   cache:
